@@ -3,7 +3,9 @@
 
   let loaded = false;
   // Each page names its bundle: <script src="/assets/js/loader.js" data-bundle="info" defer>.
-  const bundle = (document.currentScript && document.currentScript.dataset.bundle) || "mans";
+  const me = document.currentScript;
+  const bundle = me.dataset.bundle || "mans";
+  const url = function (path) { return new URL(path, me.src).href; }; // relative to this file, so a sub-folder host works
   let pending = null; // a button clicked before the bundle arrived; clicked again once it has
 
   function remember(e) {
@@ -17,10 +19,10 @@
     // Webfonts (Lato, Roboto) arrive with the first interaction; until then the system font shows.
     const fonts = document.createElement("link");
     fonts.rel = "stylesheet";
-    fonts.href = "/assets/css/fonts.css";
+    fonts.href = url("../css/fonts.css");
     document.head.appendChild(fonts);
     const script = document.createElement("script");
-    script.src = "/assets/js/" + bundle + ".bundle.js";
+    script.src = url(bundle + ".bundle.js");
     script.defer = true;
     script.onload = function () {
       document.removeEventListener("click", remember, true);

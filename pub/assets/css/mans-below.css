@@ -725,7 +725,7 @@ button.btn-lang:hover {
   max-width: 65ch;
 }
 
-.pages h1 {
+.pages h2 {
   counter-reset: h2;
   font-size: 1.125rem;
   margin-top: 1.5rem;
@@ -735,40 +735,47 @@ button.btn-lang:hover {
   color: var(--text-heading);
 }
 
-.pages h1:first-child {
+.pages h2:first-child {
   margin-top: 0;
 }
 
-.pages h2 {
+.pages h3 {
   counter-reset: h3;
   font-size: 1.05rem;
   margin-top: 1.25rem;
   margin-bottom: 0.45rem;
 }
 
-.pages h3 {
+.pages h4 {
   counter-reset: h4;
   font-size: 1rem;
   margin-top: 1rem;
   margin-bottom: 0.4rem;
 }
 
-.pages h1::before {
+.pages h2::before {
   counter-increment: h1;
   content: counter(h1) " | ";
   color: var(--red-600);
 }
 
-.pages h2::before {
+.pages h3::before {
   counter-increment: h2;
   content: counter(h1) "." counter(h2) " | ";
   color: var(--red-600);
 }
 
-.pages h3::before {
+.pages h4::before {
   counter-increment: h3;
   content: counter(h1) "." counter(h2) "." counter(h3) " | ";
   color: var(--red-600);
+}
+
+/* #DB000F is 3.3:1 on the dark card: the numbers use the dark-mode chip red there (7.7:1) */
+:root[data-theme="dark"] .pages h2::before,
+:root[data-theme="dark"] .pages h3::before,
+:root[data-theme="dark"] .pages h4::before {
+  color: #FF8A93;
 }
 
 .pages p {
