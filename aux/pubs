@@ -11,7 +11,14 @@ function packer_webcon() {
 
 
 function packer_webpub() {
-    
+
+    # pub/ is edited by hand since the Radova redesign; this build would delete it (rm -fr below).
+    if [[ "$PACKER_FORCE_BUILD" != "1" ]]; then
+        echo "packer -build: pub/ is maintained by hand and the build would delete it." >&2
+        echo "Set PACKER_FORCE_BUILD=1 to build anyway." >&2
+        return 1
+    fi
+
     packer_webcon
 
     local path="$(pwd)/pub"
